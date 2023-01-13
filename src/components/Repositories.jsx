@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import Repo from './Repo'
 import '../App.css'
-import { Link } from 'react-router-dom';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Repositories = ({ repos }) => {
     console.log('repos comp', repos);
