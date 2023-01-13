@@ -4,7 +4,7 @@ import './App.css'
 import UserDetails from './components/UserDetails'
 import Repositories from './components/Repositories'
 import axios from 'axios'
-
+import NoUser from './components/Nouser'
 
 
 function App() {
@@ -21,11 +21,17 @@ function App() {
     if (username) {
       const getUser = async () => {
         const res = await axios.get(`https://api.github.com/users/${username}`)
-        setUser(res.data)
-        if (User) {
+        // const data = await res.json()
+        console.log("DATAAAA", await res.status);
+        if (await res.status === 200) {
+          setUser(res.data)
           setLoading(false)
         }
-        console.log(res.data);
+        else {
+          setUser(null)
+          setLoading(false)
+        }
+        console.log('user ', res.data);
       }
       getUser()
     }
@@ -43,7 +49,6 @@ function App() {
   }, [username, user])
 
 
-
   const searchaHandler = () => {
     setUsername(inputValue)
   }
@@ -55,12 +60,15 @@ function App() {
           <input className='searchbar' type="text" placeholder='Search a User...' value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
           <button onClick={searchaHandler}>Search</button>
         </div>
+
         {
-          username ? <>
+
+          (user && username) ? <>
             <UserDetails user={user} />
             <Repositories repos={repos} />
           </> :
-            <h1>No User</h1>
+            <NoUser />
+
         }
       </div>
     </div>

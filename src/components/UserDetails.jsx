@@ -7,7 +7,6 @@ const Home = ({ user }) => {
             <div className="wrapper">
                 <div className="avatar">
                     <img src={user.avatar_url} alt="Avatar" />
-
                 </div>
                 <div className="biodata">
                     <h2 className="username"> {user.name} </h2>

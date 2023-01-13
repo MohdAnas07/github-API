@@ -17,9 +17,7 @@ const Repositories = ({ repos }) => {
             {
                 repos && repos.slice(pageNo, pageNo + 6).map((repo) => {
                     return (
-                        // <a to={repo.html_url} >
                         <Repo key={repo.id} repo={repo} />
-                        // </a>
                     )
                 })
             }
@@ -37,7 +35,7 @@ const Repositories = ({ repos }) => {
                         {/* <ArrowBackIcon /> */}
                         PrevPage
                     </button>
-                    <span>{(pageNo + 6) / 6} / {repos.length / 6}</span>
+                    <span>{(pageNo + 6) / 6} / {Math.ceil(repos.length / 6)}</span>
                     <button
                         onClick={() => {
                             if (pageNo < repos.length - 6) {
